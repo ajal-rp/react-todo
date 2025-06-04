@@ -45,7 +45,7 @@
 .todo-items {
   min-height: 60px;
   padding: 8px;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease, border 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -77,4 +77,11 @@
   border-radius: 50%;
   border: none;
   margin-right: 5px;
+}
+
+.drag-over {
+  border: 2px dashed blue;
+  transition: all 0.2s ease;
+  background-color: rgba(0, 123, 255, 0.1);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }

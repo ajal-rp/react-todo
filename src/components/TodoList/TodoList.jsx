@@ -3,37 +3,32 @@ import { TodoContext } from "../../context/TodoContext";
 import TodoForm from "../TodoForm/TodoForm";
 import TodoItem from "../TodoItem/TodoItem";
 import "./TodoList.css";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-} from "@hello-pangea/dnd"; // ✅ use maintained fork
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"; // ✅ use maintained fork
 
 const TodoList = () => {
-  const {
-    todos,
-    setTodos,
-    isNewTodoButtonEnabled,
-    setIsNewTodoButtonEnabled,
-  } = useContext(TodoContext);
+  const { todos, setTodos, isNewTodoButtonEnabled, setIsNewTodoButtonEnabled } =
+    useContext(TodoContext);
 
   const handleNewTodoButton = () => setIsNewTodoButtonEnabled(true);
 
   // ✅ useMemo to stabilize column structure
-  const columns = useMemo(() => ({
-    draft: {
-      name: "Draft",
-      items: todos.filter((todo) => todo.status === "draft"),
-    },
-    inprogress: {
-      name: "In Progress",
-      items: todos.filter((todo) => todo.status === "inprogress"),
-    },
-    completed: {
-      name: "Completed",
-      items: todos.filter((todo) => todo.status === "completed"),
-    },
-  }), [todos]);
+  const columns = useMemo(
+    () => ({
+      draft: {
+        name: "Draft",
+        items: todos.filter((todo) => todo.status === "draft"),
+      },
+      inprogress: {
+        name: "In Progress",
+        items: todos.filter((todo) => todo.status === "inprogress"),
+      },
+      completed: {
+        name: "Completed",
+        items: todos.filter((todo) => todo.status === "completed"),
+      },
+    }),
+    [todos]
+  );
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
@@ -44,9 +39,7 @@ const TodoList = () => {
       const [moved] = items.splice(source.index, 1);
       items.splice(destination.index, 0, moved);
 
-      const others = todos.filter(
-        (t) => t.status !== source.droppableId
-      );
+      const others = todos.filter((t) => t.status !== source.droppableId);
       setTodos([...others, ...items]);
     } else {
       const sourceItems = Array.from(columns[source.droppableId].items);
@@ -75,11 +68,13 @@ const TodoList = () => {
             </h3>
 
             <Droppable droppableId={columnId}>
-              {(provided) => (
+              {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="todo-items"
+                  className={`todo-items ${
+                    snapshot.isDraggingOver ? "drag-over" : ""
+                  }`}
                 >
                   {column.items.map((todo, index) => (
                     <Draggable
