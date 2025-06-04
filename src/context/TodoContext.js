@@ -5,6 +5,8 @@ import { createContext, useState, useEffect } from "react";
 export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
+  // todo data secion
+
   const [todos, setTodos] = useState([
     {
       id: 1,
@@ -26,9 +28,37 @@ export const TodoProvider = ({ children }) => {
     },
   ]);
 
-  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      setTodos(JSON.parse(savedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // theme section
+  const [theme, setTheme] = useState(() => {
+    // setting up initial theme
+    return localStorage.getItem("theme") || "light";
+  });
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, []);
+
   const [isNewTodoButtonEnabled, setIsNewTodoButtonEnabled] = useState(false);
 
+  // drag and drop section
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
     if (!destination) return;
@@ -77,16 +107,7 @@ export const TodoProvider = ({ children }) => {
     setTodos(updatedTodos);
   };
 
-  useEffect(() => {
-    const savedTodos = localStorage.getItem("todos");
-    if (savedTodos) {
-      setTodos(JSON.parse(savedTodos));
-    }
-  }, []);
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
 
   return (
     <TodoContext.Provider
@@ -94,10 +115,11 @@ export const TodoProvider = ({ children }) => {
         todos,
         setTodos,
         theme,
-        setTheme,
+        toggleTheme,
         isNewTodoButtonEnabled,
         setIsNewTodoButtonEnabled,
         onDragEnd,
+        
       }}
     >
       {children}

@@ -1,18 +1,18 @@
 import { useContext } from "react";
 import { TodoContext } from "../../context/TodoContext";
 import "./ThemeToggle.css";
+import { Sun, Moon } from "react-feather";
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useContext(TodoContext);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
-  };
+  const { theme, toggleTheme } = useContext(TodoContext);
 
   return (
-    <button onClick={toggleTheme} className="btn">
-      {theme}
+    <button
+      onClick={toggleTheme}
+      aria-lable={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      className="theme-toggle"
+    >
+      {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
     </button>
   );
 };
