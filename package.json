@@ -2,7 +2,7 @@
   "name": "todo-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ajal-rp.github.io/react-todo",
+  "homepage": "https://ajal-rp.github.io/react-todo/",
   "dependencies": {
     "@hello-pangea/dnd": "^18.0.1",
     "@testing-library/dom": "^10.4.0",
