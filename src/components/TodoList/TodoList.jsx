@@ -3,15 +3,14 @@ import { TodoContext } from "../../context/TodoContext";
 import TodoForm from "../TodoForm/TodoForm";
 import TodoItem from "../TodoItem/TodoItem";
 import "./TodoList.css";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"; // ✅ use maintained fork
-
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 const TodoList = () => {
   const { todos, setTodos, isNewTodoButtonEnabled, setIsNewTodoButtonEnabled } =
     useContext(TodoContext);
 
   const handleNewTodoButton = () => setIsNewTodoButtonEnabled(true);
 
-  // ✅ useMemo to stabilize column structure
+  //  useMemo to stabilize column structure
   const columns = useMemo(
     () => ({
       draft: {
