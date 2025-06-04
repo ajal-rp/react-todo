@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg-color: #ffffff;
+  --text-color: #ffffff;
+  --primary-color: #202d48;
+  --font-family: "Work Sans", sans-serif;
+  --secondary--text--color: #cfddfc;
+}
+
+[data-theme="dark"] {
+  --bg-color: #000;
+  --text-color: #f0f0f0;
+  --primary-color: #ee3c0f;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+}
+
+h3,
+h4 {
+  font-size: 600;
+  color: var(--primary-color);
+  font-family: var(--font-family);
+}
+
+.btn {
+  max-width: 100%;
+  min-width: 50%;
+  background: var(--primary-color);
+  color: var(--secondary--text--color);
+  margin: 5px auto;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--font-family);
+  font-size: medium;
+  font-weight: 700;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+}

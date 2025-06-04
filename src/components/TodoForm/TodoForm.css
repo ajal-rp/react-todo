@@ -1,0 +1,43 @@
+.todo-form {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+  background: var(--bg-color);
+  padding: 5px 5px;
+  border: 1px solid #9d9d9f;
+  border-radius: 5px;
+}
+
+.todo-form input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.todo-form textarea {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.todo-form input:focus,
+textarea:focus {
+  border: 1px solid #9d9d9f;
+  border-radius: 5px;
+}
+
+.button--containers {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin: 5px 8px;
+}
+
+.button--containers .cancel {
+  background-color: #cfddfc !important;
+  color: var(--primary-color);
+}

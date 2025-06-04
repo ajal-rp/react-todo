@@ -1,0 +1,20 @@
+header {
+  box-shadow: 3px 10px 7px -6px rgba(23, 23, 23, 0.48);
+  -webkit-box-shadow: 3px 10px 7px -6px rgba(23, 23, 23, 0.48);
+  -moz-box-shadow: 3px 10px 7px -6px rgba(23, 23, 23, 0.48);
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header__left {
+  padding-left: 8px;
+}
+.button_container button {
+  padding: 5px 8px;
+  border: none;
+  background-color: var(--primary-color);
+}
