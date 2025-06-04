@@ -80,7 +80,7 @@
 }
 
 .drag-over {
-  border: 2px dashed blue;
+  border: 2px dashed #334977;
   transition: all 0.2s ease;
   background-color: rgba(0, 123, 255, 0.1);
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
